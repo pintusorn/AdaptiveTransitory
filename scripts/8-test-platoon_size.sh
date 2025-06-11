@@ -1,0 +1,3 @@
+python main.py --speed=20 --headway=0.9 --platoon1=pid --platoon2=hinf --disturbance=none --size=8 --scenario_type=two_platoon --inter_gap=200 --topology=1 --method=transitory --merging_time=2.0 --disturbance_time=1.0 --total_time=10.0
+python main.py --speed=20 --headway=0.9 --platoon1=pid --platoon2=hinf --disturbance=none --size=16 --scenario_type=two_platoon --inter_gap=200 --topology=1 --method=transitory --merging_time=2.0 --disturbance_time=1.0 --total_time=10.0
+python main.py --speed=20 --headway=0.9 --platoon1=pid --platoon2=hinf --disturbance=none --size=32 --scenario_type=two_platoon --inter_gap=200 --topology=1 --method=transitory --merging_time=2.0 --disturbance_time=1.0 --total_time=10.0

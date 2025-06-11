@@ -1,0 +1,4 @@
+leader_controller,follow_controller,scenario,topology,size,leader_merged_time,full_merged_time,jerk_rms,jerk_max,jerk_min,min_gap_p2veh1,avg_gap_spacing_p2_others,crash,max_timestamp
+pid,hinf,none,1,8,60.1,60.1,0.8172256432809288,23.1818,-6.2885,22.0009,25.143464204923486,False,100.1
+pid,hinf,none,1,16,60.1,60.1,0.6591525602995872,23.1818,-6.2885,22.0009,25.028399401197603,False,100.1
+pid,hinf,none,1,32,60.1,60.1,0.5503885926771209,23.1818,-6.2885,22.0009,24.674433240186293,False,100.1

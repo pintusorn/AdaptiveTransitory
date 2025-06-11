@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2025-05-07 11:29:04 by Eclipse SUMO netedit Version 1.20.0 -->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <!-- Vehicle Types -->
+    <vType id="CAV" accel="4.0" decel="1.0" maxSpeed="30" length="4" minGap="2.0" color="1,1,0"/>
+    <vType id="CAV2" accel="4.0" decel="1.0" maxSpeed="30" length="4" minGap="2.0" color="0,1,0"/>
+
+    <!-- Routes -->
+    <route id="-main" edges="-highway"/>
+    <route id="main" edges="highway"/>
+
+    <vehicle id="p1veh1" type="CAV" depart="0.00" route="main" departPos="380" departSpeed="15"/>
+    <vehicle id="p1veh2" type="CAV" depart="0.00" route="main" departPos="350" departSpeed="15"/>
+    <vehicle id="p1veh3" type="CAV" depart="0.00" route="main" departPos="320" departSpeed="15"/>
+    <vehicle id="p1veh4" type="CAV" depart="0.00" route="main" departPos="290" departSpeed="15"/>
+    <vehicle id="p2veh1" type="CAV2" depart="0.00" route="main" departPos="90" departSpeed="15"/>
+    <vehicle id="p2veh2" type="CAV2" depart="0.00" route="main" departPos="60" departSpeed="15"/>
+    <vehicle id="p2veh3" type="CAV2" depart="0.00" route="main" departPos="30" departSpeed="15"/>
+    <vehicle id="p2veh4" type="CAV2" depart="0.00" route="main" departPos="0" departSpeed="15"/>
+
+    <!-- <vehicle id="p1veh1" type="CAV" depart="0.00" route="main" departPos="280" />
+    <vehicle id="p1veh2" type="CAV" depart="0.00" route="main" departPos="250" />
+    <vehicle id="p1veh3" type="CAV" depart="0.00" route="main" departPos="220" />
+    <vehicle id="p1veh4" type="CAV" depart="0.00" route="main" departPos="190" />
+    <vehicle id="p2veh1" type="CAV2" depart="0.00" route="main" departPos="90" />
+    <vehicle id="p2veh2" type="CAV2" depart="0.00" route="main" departPos="60" />
+    <vehicle id="p2veh3" type="CAV2" depart="0.00" route="main" departPos="30" />
+    <vehicle id="p2veh4" type="CAV2" depart="0.00" route="main" departPos="0" /> -->
+<!-- 
+    <vehicle id="p1veh1" type="CAV" depart="0.00" route="main" departPos="205" departSpeed="15"/>
+    <vehicle id="p1veh2" type="CAV" depart="0.00" route="main" departPos="190" departSpeed="15"/>
+    <vehicle id="p1veh3" type="CAV" depart="0.00" route="main" departPos="175" departSpeed="15"/>
+    <vehicle id="p1veh4" type="CAV" depart="0.00" route="main" departPos="160" departSpeed="15"/> -->
+
+    <!-- Platoon 2 (Green CAVs) -->
+    <!-- <vehicle id="p2veh1" type="CAV2" depart="0.00" route="main" departPos="45" departSpeed="15"/>
+    <vehicle id="p2veh2" type="CAV2" depart="0.00" route="main" departPos="30" departSpeed="15"/>
+    <vehicle id="p2veh3" type="CAV2" depart="0.00" route="main" departPos="15" departSpeed="15"/>
+    <vehicle id="p2veh4" type="CAV2" depart="0.00" route="main" departPos="0" departSpeed="15"/> -->
+
+</routes>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated on 2025-05-15 17:59:34 -->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <!-- Vehicle Types -->
+    <vType id="CAV" accel="4.0" decel="10.0" maxSpeed="30" length="4" minGap="0.0" tau="0.01" color="1,1,0"/>
+
+    <!-- Routes -->
+    <route id="main" edges="highway"/>
+
+    <!-- Auto-generated Setting: Headway: 1.2s, Speed: 30m/s, Gap: 40m -->
+    <vehicle id="p1veh1" type="CAV" depart="0.00" route="main" departSpeed="30" departPos="120"/>
+    <vehicle id="p1veh2" type="CAV" depart="0.00" route="main" departSpeed="30" departPos="80"/>
+    <vehicle id="p1veh3" type="CAV" depart="0.00" route="main" departSpeed="30" departPos="40"/>
+    <vehicle id="p1veh4" type="CAV" depart="0.00" route="main" departSpeed="30" departPos="0"/>
+</routes>

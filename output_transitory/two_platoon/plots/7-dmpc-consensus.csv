@@ -1,0 +1,6 @@
+leader_controller,follow_controller,scenario,topology,merging_distance,leader_merged_time,full_merged_time,jerk_rms,jerk_max,jerk_min,min_gap_p2veh1,avg_gap_spacing_p2_others,crash,max_timestamp
+dmpc,consensus,brake,1,300,35.3,35.3,1.0121892088565712,31.0,-5.0,14.1883,19.625471767363074,False,58.9
+dmpc,consensus,brake,1,200,28.4,28.4,2.477678924193501,4.0,-70.0,14.0489,19.632543245341616,False,58.9
+dmpc,consensus,brake,1,50,,,0.0,0.0,0.0,121.0,22.0,True,16.4
+dmpc,consensus,brake,1,100,,,0.0,0.0,0.0,111.0,22.0,True,19.4
+dmpc,consensus,brake,1,200,28.4,28.4,2.477678924193501,4.0,-70.0,14.0489,19.632543245341616,False,58.9

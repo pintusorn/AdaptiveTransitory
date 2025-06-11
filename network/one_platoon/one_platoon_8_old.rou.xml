@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2025-05-07 11:29:04 by Eclipse SUMO netedit Version 1.20.0 -->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <!-- Vehicle Types -->
+    <vType id="CAV" accel="4.0" decel="10.0" maxSpeed="30" length="4" minGap="0.0" tau="0.01" color="1,1,0"/>
+
+    <!-- Routes -->
+    <route id="-main" edges="-highway"/>
+    <route id="main" edges="highway"/>
+
+    <!-- Setting 1: Headway: 0.6s, Speed: 10m/s, Gap: 10m -->
+    <!-- <vehicle id="p1veh1" type="CAV" depart="0.00" route="main"  departSpeed="10"/>
+    <vehicle id="p1veh2" type="CAV" depart="0.00" route="main"  departSpeed="10"/>
+    <vehicle id="p1veh3" type="CAV" depart="0.00" route="main"  departSpeed="10"/>
+    <vehicle id="p1veh4" type="CAV" depart="0.00" route="main"  departSpeed="10"/> -->
+    
+    <!-- Setting 2: Headway: 0.6s, Speed: 20m/s, Gap: 16m -->
+    <!-- <vehicle id="p1veh1" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="48"/>
+    <vehicle id="p1veh2" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="32"/>
+    <vehicle id="p1veh3" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="16"/>
+    <vehicle id="p1veh4" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="0"/> -->
+    
+    <!-- Setting 3: Headway: 0.6s, Speed: 30m/s, Gap: 22m -->
+    <!-- <vehicle id="p1veh1" type="CAV" depart="0.00" route="main" departSpeed="30" departPos="66"/>
+    <vehicle id="p1veh2" type="CAV" depart="0.00" route="main" departSpeed="30" departPos="44"/>
+    <vehicle id="p1veh3" type="CAV" depart="0.00" route="main" departSpeed="30" departPos="22"/>
+    <vehicle id="p1veh4" type="CAV" depart="0.00" route="main" departSpeed="30" departPos="0"/> -->
+
+    <!-- Setting 4: Headway: 0.9s, Speed: 10m/s, Gap: 13m -->
+    <!-- <vehicle id="p1veh1" type="CAV" depart="0.00" route="main" departSpeed="10" departPos="39"/>
+    <vehicle id="p1veh2" type="CAV" depart="0.00" route="main" departSpeed="10" departPos="26"/>
+    <vehicle id="p1veh3" type="CAV" depart="0.00" route="main" departSpeed="10" departPos="13"/>
+    <vehicle id="p1veh4" type="CAV" depart="0.00" route="main" departSpeed="10" departPos="0"/> -->
+
+    <!-- Setting 5: Headway: 0.9s, Speed: 20m/s, Gap: 22m -->
+    <!-- <vehicle id="p1veh1" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="66"/>
+    <vehicle id="p1veh2" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="44"/>
+    <vehicle id="p1veh3" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="22"/>
+    <vehicle id="p1veh4" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="0"/> -->
+
+    <!-- Setting 6: Headway: 0.9s, Speed: 30m/s, Gap: 31m -->
+    <!-- <vehicle id="p1veh1" type="CAV" depart="0.00" route="main" departSpeed="30" departPos="93"/>
+    <vehicle id="p1veh2" type="CAV" depart="0.00" route="main" departSpeed="30" departPos="62"/>
+    <vehicle id="p1veh3" type="CAV" depart="0.00" route="main" departSpeed="30" departPos="31"/>
+    <vehicle id="p1veh4" type="CAV" depart="0.00" route="main" departSpeed="30" departPos="0"/> -->
+
+    <!-- Setting 7: Headway: 1.2s, Speed: 10m/s, Gap: 16m -->
+    <!-- <vehicle id="p1veh1" type="CAV" depart="0.00" route="main" departSpeed="10" departPos="48"/>
+    <vehicle id="p1veh2" type="CAV" depart="0.00" route="main" departSpeed="10" departPos="32"/>
+    <vehicle id="p1veh3" type="CAV" depart="0.00" route="main" departSpeed="10" departPos="16"/>
+    <vehicle id="p1veh4" type="CAV" depart="0.00" route="main" departSpeed="10" departPos="0"/> -->
+
+    <!-- Setting 8: Headway: 1.2s, Speed: 20m/s, Gap: 28m -->
+    <vehicle id="p1veh1" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="84"/>
+    <vehicle id="p1veh2" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="56"/>
+    <vehicle id="p1veh3" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="28"/>
+    <vehicle id="p1veh4" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="0"/>
+
+    <!-- Setting 9: Headway: 1.2s, Speed: 30m/s, Gap: 40m -->
+    <!-- <vehicle id="p1veh1" type="CAV" depart="0.00" route="main" departSpeed="30" departPos="120"/>
+    <vehicle id="p1veh2" type="CAV" depart="0.00" route="main" departSpeed="30" departPos="80"/>
+    <vehicle id="p1veh3" type="CAV" depart="0.00" route="main" departSpeed="30" departPos="40"/>
+    <vehicle id="p1veh4" type="CAV" depart="0.00" route="main" departSpeed="30" departPos="0"/> -->
+</routes>

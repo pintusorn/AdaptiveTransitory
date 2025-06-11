@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated on 2025-05-26 15:49:55 -->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <!-- Vehicle Types -->
+    <vType id="CAV" accel="4.0" decel="5.0" maxSpeed="30" length="4" minGap="0.0" tau="0.01" color="1,1,0"/>
+
+    <!-- Routes -->
+    <route id="main" edges="highway"/>
+
+    <vehicle id="p1veh1" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="154"/>
+    <vehicle id="p1veh2" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="132"/>
+    <vehicle id="p1veh3" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="110"/>
+    <vehicle id="p1veh4" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="88"/>
+    <vehicle id="p1veh5" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="66"/>
+    <vehicle id="p1veh6" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="44"/>
+    <vehicle id="p1veh7" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="22"/>
+    <vehicle id="p1veh8" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="0"/>
+</routes>

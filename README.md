@@ -4,8 +4,7 @@
 
 This work aims to investigate how different platoon controllers respond during merging scenarios without the use of any intermediary mechanisms. Merging between platoons with mismatched controller types may lead to instability, unsafe gaps, or inefficient merging behavior. Based on these observations, we introduce an adaptive transitory controller --- a simple mechanism designed to facilitate smoother and safer merging between heterogeneous platoons.
 
-
-
+![System](utils/system.jpg)
 
 ## Heterogeneous controller merging baseline result
 The result in the tables are the average value of the joining platoon.

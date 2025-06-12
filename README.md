@@ -11,6 +11,11 @@ This work aims to investigate and study how would different platoon controller n
 
 
 ## Analysis
+# Baseline Result
+![Baseline result](output/two_platoon/plots/plot2.jpg)
+
+# Improved result with Adaptive Transitory Controller
+![Improved result with Adaptive Transitory Controller](output_transitory/two_platoon/plots/plot3.jpg)
 
 - The adaptive controller achieves **58.38% average improvement** in jerk RMS across all joining scenarios.
 - Largest improvements:

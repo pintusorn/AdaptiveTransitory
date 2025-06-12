@@ -227,7 +227,7 @@ plt.subplots_adjust(top=0.75)  # 0.65 leaves 35% of vertical space above axes
 
 plt.tight_layout()  # adjust axes, but preserves your manual top space
 
-output_filename = "plot3.pdf"
+output_filename = "plot3.jpg"
 output_path = os.path.join(os.path.dirname(file_path), output_filename)
 plt.savefig(output_path, dpi=300)
 plt.close()

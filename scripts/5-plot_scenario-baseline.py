@@ -181,7 +181,7 @@ ax1.add_artist(leg1)
 # But do NOT use rect or bbox_inches='tight', or your extra space will be removed!
  # adjust axes, but preserves your manual top space
 
-output_filename = "plot2.pdf"
+output_filename = "plot2.jpg"
 output_path = os.path.join(os.path.dirname(file_path), output_filename)
 # plt.subplots_adjust(top=0.1) 
 # plt.text(0.5, 1.05, '', transform=plt.gca().transAxes)  # Forces matplotlib to keep space above

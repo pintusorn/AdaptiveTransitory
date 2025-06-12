@@ -11,10 +11,10 @@ This work aims to investigate and study how would different platoon controller n
 
 
 ## Analysis
-# Baseline Result
+Baseline Result
 ![Baseline result](output/two_platoon/plots/plot2.jpg)
 
-# Improved result with Adaptive Transitory Controller
+Improved result with Adaptive Transitory Controller
 ![Improved result with Adaptive Transitory Controller](output_transitory/two_platoon/plots/plot3.jpg)
 
 - The adaptive controller achieves **58.38% average improvement** in jerk RMS across all joining scenarios.
@@ -48,26 +48,33 @@ This work aims to investigate and study how would different platoon controller n
 \text{Improvement} = \frac{\text{Baseline} - \text{Adaptive}}{\text{Baseline}} \times 100\%
 \]*
 
-## Folder organization
-All experimental results are stored in the `data/` directory. These include:
-- Simulation logs
-- Metrics like jerk RMS and inter-vehicle gap
-- Baseline vs. adaptive results for all scenario combinations
-- 
+## 📁 Folder Organization
 
-1. config : contain parser, telling which parameter is required when running a simulation to set
-2. Controller: this folder contain 5 controller that is used in this work.
-   -PID
-   - CACC
-   -Consensus
-  - H-infinity (use predefined weight/gain)
-   - DMPC
-3. network: file for the simulation config for running via SUMO
-3. output: the output of baseline result from running all experiment on how two platoon controller merge without any intermeditary
-4. output_transitory: this output is when adaptive transitory controller is used the result format is the same as output
-5. scripts: keep all the bash file of running experiment, and python for help analyze result into table organize and plot
-6. Util: keep the code for logging data method, plot default data, and how to setup SUMO files for running simulation
+1. **`config/`**  
+   Contains argument parsers and configuration files that specify required parameters for running simulations.
 
+2. **`Controller/`**  
+   Contains the five vehicle controllers used in this work:
+   - **PID**
+   - **CACC**
+   - **Consensus**
+   - **H∞ (H-infinity)** – uses predefined weights/gains
+   - **DMPC**
+
+3. **`network/`**  
+   Contains simulation configuration files for running the experiments via SUMO.
+
+4. **`output/`**  
+   Contains baseline results from experiments where two platoons merge without any intermediary or adaptive controller.
+
+5. **`output_transitory/`**  
+   Contains results from experiments using the adaptive transitory controller. The output format is consistent with `output/`.
+
+6. **`scripts/`**  
+   Contains all bash scripts for running experiments and Python scripts for analyzing results, organizing tables, and plotting figures.
+
+7. **`Util/`**  
+   Includes utility code for logging, default plotting methods, and setting up SUMO configuration files for simulation.
 
 
 ### Prerequisites

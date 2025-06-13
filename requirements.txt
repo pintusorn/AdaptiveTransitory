@@ -7,15 +7,15 @@ bleach==6.2.0
 certifi==2025.4.26
 charset-normalizer==3.4.2
 clarabel==0.10.0
-contourpy @ file:///Users/runner/miniforge3/conda-bld/contourpy_1744743163818/work
+contourpy
 cvxpy==1.6.5
-cycler @ file:///home/conda/feedstock_root/build_artifacts/cycler_1733332471406/work
+cycler
 decorator==5.2.1
 defusedxml==0.7.1
 docopt==0.6.2
 executing==2.2.0
 fastjsonschema==2.21.1
-fonttools @ file:///Users/runner/miniforge3/conda-bld/fonttools_1743732243273/work
+fonttools
 idna==3.10
 ipython==8.12.3
 jedi==0.19.2
@@ -26,7 +26,7 @@ jsonschema-specifications==2025.4.1
 jupyter_client==8.6.3
 jupyter_core==5.7.2
 jupyterlab_pygments==0.3.0
-kiwisolver @ file:///Users/runner/miniforge3/conda-bld/kiwisolver_1725459273855/work
+kiwisolver
 MarkupSafe==3.0.2
 matplotlib==3.10.1
 matplotlib-inline==0.1.7
@@ -36,24 +36,24 @@ munkres==1.1.4
 nbclient==0.10.2
 nbconvert==7.16.6
 nbformat==5.10.4
-numpy @ file:///Users/runner/miniforge3/conda-bld/numpy_1745118924781/work/dist/numpy-2.2.5-cp310-cp310-macosx_11_0_arm64.whl#sha256=c1e9ae581fd91e1bbee2dcd2adee8f5d2d9bc8770e334da24b4aa3642953adf4
+numpy
 osqp==1.0.4
-packaging @ file:///home/conda/feedstock_root/build_artifacts/bld/rattler-build_packaging_1745345660/work
-pandas @ file:///Users/runner/miniforge3/conda-bld/pandas_1744430498204/work
+packaging
+pandas
 pandocfilters==1.5.1
 parso==0.8.4
 pexpect==4.9.0
 pickleshare==0.7.5
-pillow @ file:///Users/runner/miniforge3/conda-bld/pillow_1735929731714/work
+pillow
 pipreqs==0.5.0
 platformdirs==4.3.8
 prompt_toolkit==3.0.51
 ptyprocess==0.7.0
 pure_eval==0.2.3
 Pygments==2.19.1
-pyparsing @ file:///home/conda/feedstock_root/build_artifacts/pyparsing_1743089729650/work
-python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1733215673016/work
-pytz @ file:///home/conda/feedstock_root/build_artifacts/pytz_1742920838005/work
+pyparsing
+python-dateutil
+pytz
 pyzmq==26.4.0
 referencing==0.36.2
 requests==2.32.3
@@ -62,18 +62,17 @@ scikit-learn==1.6.1
 scipy==1.15.3
 scs==3.2.7.post2
 seaborn==0.13.2
-six @ file:///home/conda/feedstock_root/build_artifacts/six_1733380938961/work
+six
 soupsieve==2.7
 stack-data==0.6.3
 sumolib==1.23.0
 threadpoolctl==3.6.0
 tinycss2==1.4.0
-tornado @ file:///Users/runner/miniforge3/conda-bld/tornado_1732615966791/work
+tornado
 traci==1.23.0
 traitlets==5.14.3
 typing_extensions==4.13.2
-tzdata @ file:///home/conda/feedstock_root/build_artifacts/python-tzdata_1742745135198/work
-unicodedata2 @ file:///Users/runner/miniforge3/conda-bld/unicodedata2_1736692581912/work
+unicodedata2
 urllib3==2.4.0
 wcwidth==0.2.13
 webencodings==0.5.1

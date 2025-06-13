@@ -87,6 +87,8 @@ Install dependencies using the provided environment:
 conda create -n AdaptiveTransitory python=3.10
 conda activate AdaptiveTransitory
 pip install -r requirements.txt
+conda install -c conda-forge sumo
+
 ```
 ## How to Run
 Example command format

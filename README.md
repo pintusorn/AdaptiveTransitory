@@ -8,12 +8,6 @@ This work aims to investigate how different platoon controllers respond during m
 ![Raw Data Visualization](utils/raw_data.jpg)
 
 ## Analysis
-Baseline Result
-![Baseline result](output/two_platoon/plots/plot2.jpg)
-
-Improved result with Adaptive Transitory Controller
-![Improved result with Adaptive Transitory Controller](output_transitory/two_platoon/plots/plot3.jpg)
-
 - The adaptive controller achieves **58.38% average improvement** in jerk RMS across all joining scenarios.
 - Largest improvements:
   - PID (braking): 76%
@@ -45,7 +39,7 @@ Improved result with Adaptive Transitory Controller
 \text{Improvement} = \frac{\text{Baseline} - \text{Adaptive}}{\text{Baseline}} \times 100\%
 \]*
 
-## 📁 Folder Organization
+## Folder Organization
 
 1. **`config/`**  
    Contains argument parsers and configuration files that specify required parameters for running simulations.

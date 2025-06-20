@@ -1,8 +1,23 @@
 # Adaptive Transitory Controller for Vehicle Platooning
 
-This work aims to investigate how different platoon controllers respond during merging scenarios without the use of any intermediary mechanisms. Merging between platoons with mismatched controller types may lead to instability, unsafe gaps, or inefficient merging behavior. Based on these observations, we introduce an adaptive transitory controller --- a simple mechanism designed to facilitate smoother and safer merging between heterogeneous platoons.
+This work investigates the compatibility of heterogeneous platoon controllers during merging maneuvers. We consider five controllers: PID, CACC, Consensus, H-infinity, and DMPC. By pairing these controllers, we evaluate all 25 possible combinations during merging scenarios, including disturbances such as braking and speed oscillations in the preceding platoon. Based on these observations, we introduce an adaptive transitory controller, which is a simple mechanism designed to facilitate smoother merging between heterogeneous platoon controllers. All simulations are performed using SUMO and TraCI with Python.
 
 ![System](utils/system.jpg)
+
+## Setup
+Here are the scenarios we use to test compatibility:
+- There are two platoons in the simulation: a preceding platoon and a joining platoon. Each drives longitudinally in the same lane.
+- These two platoons are connected by an inter-platoon communication link. This minimal link allows us to clearly observe the controllers’ behavior during merging.
+- The initial speed and headway of both platoons are identical.
+- No delay, no loss, and no packet drop in V2V communication is assumed.
+- We do not consider protocol exchange during merging.
+- The two platoons are considered merged when the inter-platoon gap is less than 0.1 meters below the expected gap in normal and oscillatory merging. For the braking scenario, the threshold is 5 meters.
+- The simulation runs for 100 seconds. At 10 seconds, the preceding platoon experiences a disturbance (braking or oscillation).
+- At 20 seconds, the joining platoon begins merging from behind.
+
+Controller setup includes the following additional features:
+1. Emergency braking: The leader of the joining platoon checks two conditions: (a) if the speed difference between the joining platoon leader and the preceding platoon leader exceeds x m/s, and (b) if the gap between the joining and preceding platoons is less than 14 meters.
+2. Control input limit: The control input calculated by the controller is limited to a maximum of 25.
 
 ## Heterogeneous controller merging baseline result
 ![Raw Data Visualization](utils/raw_data.jpg)
@@ -13,6 +28,9 @@ This work aims to investigate how different platoon controllers respond during m
   - PID (braking): 76%
   - DMPC (normal + oscillation): ~79%
 - These improvements are obtained without affecting the gap-spacing, maintaining safety.
+
+## Adaptive Transitory controller
+Baseline results reveal that CACC generally performs best in no-disturbance and oscillatory scenarios (with respect to RMS jerk), while DMPC excels in braking scenarios. Based on this, we implement the adaptive transitory controller at the leader of the joining platoon. This mechanism is activated during merging and switches between the two controllers: if the last vehicle in the preceding platoon is at least 5 m/s slower than the joining leader, a sudden brake is detected and DMPC is used; otherwise, CACC is used.
 
 ## Relative Improvement Summary
 
@@ -35,9 +53,11 @@ This work aims to investigate how different platoon controllers respond during m
 | PID        | sinu       | 1.2424            | 0.6902            | 44.45%                    |
 
 *Note: Relative improvement is calculated as  
-\[
-\text{Improvement} = \frac{\text{Baseline} - \text{Adaptive}}{\text{Baseline}} \times 100\%
-\]*
+
+Improvement = (Baseline – Adaptive) / Baseline × 100%
+
+While the switching logic is somewhat heuristic, this work demonstrates that even a simple implementation can help smooth heterogeneous controller merging. We also tested the merging scenario with different parameters (speed, headway, merging distance, platoon size) and found that some gaps remain. The adaptive transitory controller may not cover all cases, and more advanced methods may be needed. Additional scenarios and real-world implementation considerations should also be explored in future work.
+
 
 ## Folder Organization
 

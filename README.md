@@ -94,12 +94,11 @@ Install dependencies using the provided environment:
 conda create -n AdaptiveTransitory python=3.10
 conda activate AdaptiveTransitory
 pip install -r requirements.txt
-conda install -c conda-forge sumo
-
 ```
+Install SUMO: https://sumo.dlr.de/docs/Installing/index.html
+
 ## How to Run
-Example command format
+You can run a simulation with custom settings using command-line arguments. Here is an example command:
 
-python main.py --speed=20 --headway=0.9 --platoon1=cacc --platoon2=pid --disturbance=brake --save_log --size=16 --scenario_type=two_platoon --inter_gap=200 --topology=1 --method=baseline --merging_time=2.0 --disturbance_time=1.0 --total_time=10.0
-
+python main.py --speed=20 --headway=0.9 --platoon1=pid --platoon2=cacc --disturbance=none --save_log --size=16 --inter_gap=200 --topology=1 --method=baseline --merging_time=20.0 --disturbance_time=10.0 --total_time=60.0 --gui
 

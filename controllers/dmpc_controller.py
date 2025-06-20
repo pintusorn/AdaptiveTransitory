@@ -1,14 +1,7 @@
 import numpy as np
-import traci
 
 def dmpc_controller(veh_num, ego_speed, ego_pos, pred_speed, pred_pos, pred_accel, 
                    leader_speed, leader_pos, leader_accel, d_safe, leader_prev_accel, pred_prev_accel):
-
-    # q_d_leader = 10.15    
-    # q_d_front  = 7   
-    # q_v_front  = 9    
-    # q_a_front  = 1.8   
-    # q_v_leader = 9 
 
     q_d_leader = 10.15    
     q_d_front  = 7   
@@ -52,7 +45,6 @@ def dmpc_controller(veh_num, ego_speed, ego_pos, pred_speed, pred_pos, pred_acce
             v_leader_next_diff = v_leader_next - v_ego_next
             a_leader_next_diff = a_leader_next - a
 
-            # Calculate cost
             cost += (
                 (q_d_leader * (d_leader_next_diff ** 2)) +
                 (q_d_front * (d_pred_next_diff ** 2)) +
@@ -60,7 +52,7 @@ def dmpc_controller(veh_num, ego_speed, ego_pos, pred_speed, pred_pos, pred_acce
                 (q_a_front * ((a_leader_next_diff + a_pred_next_diff) / 2) ** 2) + 
                 (q_v_leader * (v_leader_next_diff ** 2))
             )
-
+            
             v_ego = v_ego_next
             d_ego = d_ego_next
             v_pred = v_pred_next

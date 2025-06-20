@@ -1,5 +1,3 @@
-# controllers/pid_controller.py
-
 def pid_controller(ego_speed, pred_speed, pred_accel, leader_speed, leader_accel, d_gap, d_safe, d_gap_leader, d_safe_leader):
 
     kp_front = 285  

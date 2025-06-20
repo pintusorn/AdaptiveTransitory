@@ -7,8 +7,8 @@ import re
 scenarios = ["none"]
 leader_controller = "pid"
 follower_controller = "hinf"
-base_dir = f"../output_transitory/two_platoon/raw_follower_{follower_controller}"
-plot_dir = "../output_transitory/two_platoon/plots"
+base_dir = f"../output_transitory/raw_follower_{follower_controller}"
+plot_dir = "../output_transitory/plots"
 os.makedirs(plot_dir, exist_ok=True)
 summary_rows = []
 

@@ -16,8 +16,8 @@ plt.rcParams['legend.fontsize'] = 30
 plt.rcParams['xtick.labelsize'] = 18
 plt.rcParams['ytick.labelsize'] = 18
 
-base_dir = "../output_transitory/two_platoon/raw_follower_hinf/"
-plot_dir = "../output_transitory/two_platoon/plots"
+base_dir = "../output_transitory/raw_follower_hinf/"
+plot_dir = "../output_transitory/plots"
 os.makedirs(plot_dir, exist_ok=True)
 
 all_files = glob.glob(os.path.join(base_dir, "*.csv"))
@@ -93,8 +93,8 @@ for filepath in filepaths:
 
     for metric, ylabel in metrics:
         plt.figure(figsize=(8, 3))
-        leader_label = "Leader of joining platoon"
-        follower_label = "Follower in joining platoon"
+        leader_label = "Leader of the joining platoon"
+        follower_label = "Followers in the joining platoon"
         leader_plotted = False
         follower_plotted = False
 
@@ -136,7 +136,7 @@ for filepath in filepaths:
                 fontsize=18
             )
 
-        plt.xlim(20, 80)
+        plt.xlim(20, 60)
         plt.tight_layout()
         
 

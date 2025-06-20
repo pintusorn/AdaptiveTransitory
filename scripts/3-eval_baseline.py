@@ -9,8 +9,8 @@ headway = 0.9
 scenarios = ["sinu", "brake", "speed_up", "slow_down", "none"]
 leader_controllers = ["dmpc", "pid", "consensus", "hinf", "cacc"]
 follower_controllers = ["dmpc", "pid", "consensus", "hinf", "cacc"]
-base_dir = "../output/two_platoon/raw_follower_{follower_controller}"
-plot_dir = "../output/two_platoon/plots"
+base_dir = "../output/raw_follower_{follower_controller}"
+plot_dir = "../output/plots"
 os.makedirs(plot_dir, exist_ok=True)
 summary_rows = []
 

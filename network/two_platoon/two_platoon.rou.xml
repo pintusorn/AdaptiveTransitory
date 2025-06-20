@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated on 2025-06-15 20:11:41 -->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+
+    <!-- Vehicle Types -->
+    <vType id="CAV" accel="4.0" decel="50.0" maxSpeed="30" length="4" minGap="0.0" tau="0.01" color="1,1,0"/>
+    <vType id="CAV2" accel="4.0" decel="50.0" maxSpeed="30" length="4" minGap="0.0" tau="0.01" color="0,1,1"/>
+
+    <!-- Routes -->
+    <route id="main" edges="highway"/>
+
+    <vehicle id="p1veh1" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="508"/>
+    <vehicle id="p1veh2" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="486"/>
+    <vehicle id="p1veh3" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="464"/>
+    <vehicle id="p1veh4" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="442"/>
+    <vehicle id="p1veh5" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="420"/>
+    <vehicle id="p1veh6" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="398"/>
+    <vehicle id="p1veh7" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="376"/>
+    <vehicle id="p1veh8" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="354"/>
+    <vehicle id="p2veh1" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="154"/>
+    <vehicle id="p2veh2" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="132"/>
+    <vehicle id="p2veh3" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="110"/>
+    <vehicle id="p2veh4" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="88"/>
+    <vehicle id="p2veh5" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="66"/>
+    <vehicle id="p2veh6" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="44"/>
+    <vehicle id="p2veh7" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="22"/>
+    <vehicle id="p2veh8" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="0"/>
+</routes>

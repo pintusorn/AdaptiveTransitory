@@ -8,7 +8,7 @@ import os
 speed_colors = {10: 'tab:blue', 20: 'tab:orange', 30: 'tab:green'}
 headway_styles = {0.6: 'solid', 0.9: 'dashed', 1.2: 'dotted'}
 
-directory = "../output_transitory/two_platoon/raw_follower_cacc/"
+directory = "../output_transitory/raw_follower_cacc/"
 all_files = glob.glob(os.path.join(directory, "*.csv"))
 pattern = re.compile(
     r"^consensus_cacc_speed\d+_headway\d+(?:\.\d+)?_sinu_topology1_.*\.csv$"
@@ -66,8 +66,8 @@ headways = [0.6, 0.9, 1.2]
 scenarios = ["sinu"]
 leader_controller = "consensus"
 follower_controller = "cacc"
-base_dir = f"../output_transitory/two_platoon/raw_follower_{follower_controller}"
-plot_dir = "../output_transitory/two_platoon/plots"
+base_dir = f"../output_transitory/raw_follower_{follower_controller}"
+plot_dir = "../output_transitory/plots"
 os.makedirs(plot_dir, exist_ok=True)
 summary_rows = []
 

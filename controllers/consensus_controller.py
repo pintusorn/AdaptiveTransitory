@@ -13,6 +13,19 @@ def consensus_controller(veh_num, ego_speed, leader_speed, d_gap, d_safe, d_gap_
     else:
         B = 45
         K_leader = K_pred = d_i = 0
+    # if veh_num == 1:
+    #     B = 12
+    #     K_pred =2
+    #     K_leader = 0
+    #     d_i = 1
+    # elif veh_num > 1:
+    #     B = 12
+    #     K_leader = 2
+    #     K_pred = 2
+    #     d_i = 2
+    # else:
+    #     B = 25
+        K_leader = K_pred = d_i = 0
 
     # Compute the dynamic error term
     dynamicError = -B * ((ego_speed - leader_speed))

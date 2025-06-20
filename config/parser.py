@@ -10,10 +10,6 @@ def parse_arguments():
     """
     parser = argparse.ArgumentParser(description="Run SUMO Simulation with Configurable Parameters")
 
-    # Scenario Type
-    parser.add_argument("--scenario_type", type=str, choices=["one_platoon", "two_platoon"], required=True,
-                        help="Simulation type: one platoon or two platoon merging")
-
     # Platoon Configuration
     parser.add_argument("--platoon1", type=str, choices=["cacc", "pid", "consensus", "dmpc", "hinf"], required=True,
                         help="Controller function for Platoon 1")
@@ -66,13 +62,6 @@ def parse_arguments():
     if args.plot and not args.save_log:
         parser.error("The --plot option requires --save_log to be specified.")
 
-    # Validation - Ensure platoon2 is specified only for two platoon scenarios
-    if args.scenario_type == "one_platoon" and args.platoon2:
-        print("Error: 'platoon2' controller should not be specified for 'one_platoon' scenario.")
-        sys.exit(1)
 
-    if args.scenario_type == "two_platoon" and not args.platoon2:
-        print("Error: 'platoon2' controller is required for 'two_platoon' scenario.")
-        sys.exit(1)
 
     return args

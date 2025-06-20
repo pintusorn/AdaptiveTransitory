@@ -1,8 +1,8 @@
 import pandas as pd
 
 # Load the files
-df1 = pd.read_csv("../output_transitory/two_platoon/plots/6-summary_speed20_headway0.9.csv")
-df2 = pd.read_csv("../output/two_platoon/plots/6-summary_speed20_headway0.9.csv")
+df1 = pd.read_csv("../output_transitory/plots/6-summary_speed20_headway0.9.csv")
+df2 = pd.read_csv("../output/plots/6-summary_speed20_headway0.9.csv")
 
 # Group by leader_controller and scenario, and average jerk_rms
 avg1 = df1.groupby(['follow_controller', 'scenario'])['jerk_rms'].mean().reset_index(name='jerk_rms_rms')
@@ -33,7 +33,7 @@ plt.rcParams["font.family"] = "Times New Roman"
 
 # Load CSV file
 # rms_output_baseline
-file_path = "../output_transitory/two_platoon/plots/6-summary_speed20_headway0.9.csv"
+file_path = "../output_transitory/plots/6-summary_speed20_headway0.9.csv"
 df = pd.read_csv(file_path)
 
 df = df[~df['scenario'].isin(['slow_down', 'speed_up'])]

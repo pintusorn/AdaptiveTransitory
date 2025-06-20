@@ -33,18 +33,19 @@ num_veh = math.floor(simulation_size / 2)
 step = 0
 flag_merge = 0
 flag_disturbance = 0
-if disturbance == "sinu": max_step = args.total_time
-elif disturbance == "brake": max_step = args.total_time
-elif disturbance == "speed_up": max_step = args.total_time
-elif disturbance == "slow_down": max_step = args.total_time
-else: max_step = args.total_time
+
+max_step = args.total_time*0.1
 prev_accel_dict = {}
 int_gap_error = 0
 leader_mode = "none"
+setSpeedFlag = 0
+
+flag_emer = "off"
+emer_count = 0
 
 transitory_switch = 0
 
-generate_rou_file(args.scenario_type, simulation_size, num_veh, gap, inter_gap, speed, headway, disturbance, platoon1_controller, platoon2_controller)
+generate_rou_file(num_veh, gap, inter_gap, speed, headway, disturbance, platoon1_controller, platoon2_controller)
 
 def record_prev_accel(vehicle_id, accel_val):
     """
@@ -70,10 +71,7 @@ platoon2 = define_platoon("p2", simulation_size) if platoon2_controller else []
 
 # Setup SUMO binary
 sumo_binary = "sumo-gui" if args.gui else "sumo"
-if args.scenario_type == "two_platoon":
-    sumoCmd = [sumo_binary, "-c", f"network/two_platoon/two_platoon_{simulation_size}.sumocfg"]
-else:
-    sumoCmd = [sumo_binary, "-c", f"network/one_platoon/one_platoon_{simulation_size}.sumocfg"]
+sumoCmd = [sumo_binary, "-c", f"network/two_platoon.sumocfg"]
 
 traci.start(sumoCmd)
 if args.gui:
@@ -82,7 +80,7 @@ if args.gui:
 
 timestamp_file = time.strftime("%Y%m%d-%H%M%S")
 
-log_file = initialize_logging(platoon1_controller, platoon2_controller, speed, headway, disturbance, args.scenario_type, timestamp_file, topology, args.method, inter_gap, simulation_size)
+log_file = initialize_logging(platoon1_controller, platoon2_controller, speed, headway, disturbance, timestamp_file, topology, args.method, inter_gap, simulation_size)
 
 flag_merge_time=0
 
@@ -118,7 +116,7 @@ def get_controller_function(veh_id, controller, platoon, leader_id, headway):
     gap_error = d_gap - d_safe
     if(veh_id == "p2veh1" and gap_error < 0.5 and flag_merge_time == 0):
 
-            print("merging time is at ", step)
+            print("merging time is at ", step*10)
             flag_merge_time = 1
     int_gap_error = int_gap_error + (gap_error * 0.01)
     speed_error = pred_speed - ego_speed
@@ -155,7 +153,7 @@ def get_controller_function(veh_id, controller, platoon, leader_id, headway):
         
             if(transitory_switch == 1 and platoon2_controller != "dmpc"):
                 leader_mode = "dmpc"
-                time_step = 0.1
+                time_step = 0.01
                 a_des = dmpc_controller(veh_num, ego_speed, ego_pos, pred_speed, pred_pos, pred_accel, leader_speed, leader_pos, leader_accel, d_safe, get_prev_accel(leader_id), get_prev_accel(f"p1veh{int(veh_id[-1]) - 1}"))
             elif(transitory_switch == 2 and platoon2_controller != "cacc"):
                 leader_mode = "cacc"
@@ -165,15 +163,21 @@ def get_controller_function(veh_id, controller, platoon, leader_id, headway):
     a_max = 25.5 
     a_min = -300.5 
 
+    # sensor detect
+    
+
     a_des_limit = max(min(a_des, a_max), a_min)
 
+    # if(veh_id == "p2veh1") and (d_gap - d_safe < 0) and (leader_speed - ego_speed < -5):
+    #     print("emergency brake")
+    #     a_des_limit == -100
     traci.vehicle.setAcceleration(veh_id, a_des_limit, time_step)
 
     log_vehicle_data(log_file, traci.simulation.getTime(), veh_id, ego_speed, ego_accel, get_prev_accel(veh_id), d_gap, d_safe, ego_pos,leader_pos,d_safe_leader,most_leader_pos-ego_pos,leader_mode)
 
 while step < max_step:
     traci.simulationStep()
-    # print("step:", step)
+    # print("step:", step*10)
     for veh_id in platoon1:
         if veh_id in traci.vehicle.getIDList():
             # Disable automatic speed and lane management
@@ -195,14 +199,12 @@ while step < max_step:
 
 
                 if flag_disturbance == 1:
-                    # print("should be in here now for sinu")
                     if disturbance == "brake":
         
                         current_speed = traci.vehicle.getSpeed(veh_id)
-                        target_speed = max(0, current_speed - 0.5)  # Reduce speed by 0.5 m/s each step
+                        target_speed = max(0, current_speed - 0.5)  
                         traci.vehicle.setSpeed(veh_id, target_speed)
-
-                        # print("Brake!!!! with id ", veh_id, " | traci.vehicle.getAcceleration(veh_id): " , traci.vehicle.getAcceleration(veh_id))
+                        
                     elif disturbance == "sinu":
                         frequency = 1/20
                         omega = 2 * math.pi * frequency
@@ -219,7 +221,6 @@ while step < max_step:
                 leader_id = "p1veh1"
                 get_controller_function(veh_id, platoon1_controller, platoon1, leader_id, headway)
                 record_prev_accel(veh_id, traci.vehicle.getAcceleration(veh_id))
-
         else:
             print(f"Vehicle {veh_id} not in simulation yet.")
 
@@ -231,13 +232,43 @@ while step < max_step:
                 traci.vehicle.setImperfection(veh_id_2, 0.0)  # Eliminate driver imperfection
                 traci.vehicle.setDecel(veh_id_2, 0.0)  # Set deceleration to zero (not recommended)
                 if veh_id_2 == "p2veh1": 
+
+
                     if flag_merge == 0:
-                        traci.vehicle.setSpeed(veh_id_2, speed)
-                        # print("step: " , step , " | speed of p2veh1: ", traci.vehicle.getSpeed(veh_id_2) )
+                        if setSpeedFlag==0:
+                            traci.vehicle.setSpeed(veh_id_2,speed)
+                            print("Should not be in here")
+                            setSpeedFlag=1
+
                         record_prev_accel(veh_id_2, traci.vehicle.getAcceleration(veh_id_2))
                         ego_speed = traci.vehicle.getSpeed(veh_id_2)
                         ego_accel = traci.vehicle.getAcceleration(veh_id_2)
                         ego_pos = traci.vehicle.getPosition(veh_id_2)[0]
+
+                        # Emergency Braking
+                        # print("gap: " , traci.vehicle.getPosition(platoon1[-1])[0]-traci.vehicle.getPosition("p2veh1")[0] - (max((headway * ego_speed) + 4,14)) , " | speed: ", (traci.vehicle.getSpeed(platoon1[-1]) - traci.vehicle.getSpeed(veh_id_2)) )
+                        EMER_BRAKE_ACCEL = -200
+                        if flag_emer == "on":
+                            current_accel = traci.vehicle.getAcceleration(veh_id_2)
+                            # Smoothly approach emergency brake accel
+                            max_brake_step = 50  # max deceleration change per step
+                            target_accel = max(current_accel - max_brake_step, EMER_BRAKE_ACCEL)
+                            # print("current_accel: ", current_accel)
+
+                            # print("target_accel: ", target_accel)
+                            traci.vehicle.setAcceleration(veh_id_2, target_accel, 0.01)
+                            emer_count += 1
+                            print(emer_count)
+                            if emer_count == 30:  # e.g., 30 steps at 0.01s = 0.3s, or use 300 for 3s
+                                print("Heyy step at", step)
+                                flag_emer = "off"
+                                emer_count = 0
+                        if((traci.vehicle.getPosition(platoon1[-1])[0]-traci.vehicle.getPosition("p2veh1")[0]) - (max((headway * ego_speed) + 4,14)) < 14) and (traci.vehicle.getSpeed(platoon1[-1]) - traci.vehicle.getSpeed(veh_id_2) < -1):
+                        #    print("in conditionn")
+                           flag_emer = "on"
+                            # print("Brake : ", traci.vehicle.getAcceleration(veh_id_2))
+                        # else: 
+                            # print("Keep going at ", traci.vehicle.getAcceleration(veh_id_2))
                         log_vehicle_data(log_file, traci.simulation.getTime(), veh_id_2, ego_speed, ego_accel, get_prev_accel(veh_id_2), traci.vehicle.getPosition("p1veh1")[0] - traci.vehicle.getPosition(veh_id_2)[0], 0, ego_pos, ego_pos,0,0,leader_mode)
 
                     elif flag_merge == 1:
@@ -269,16 +300,17 @@ while step < max_step:
             else:
                 print(f"Vehicle {veh_id_2} not in simulation yet.")
         
-    if step > args.merging_time and flag_merge == 0:
+    if step > (args.merging_time*0.1) and flag_merge == 0:
 
         flag_merge = 1
     
-    if step > args.disturbance_time and flag_disturbance == 0:
+    if step > (args.disturbance_time*0.1) and flag_disturbance == 0:
         flag_disturbance = 1
 
 
     time.sleep(time_step)
-    step += time_step
+    step = round(step + time_step, 2)
+
 
 traci.close()
 print("Simulation ended.")
@@ -286,19 +318,10 @@ print("Simulation ended.")
 if args.method == "baseline": output_folder = "output"
 elif args.method == "transitory": output_folder = "output_transitory"
 
-# else: output_folder = "output"
-
 # Define directories and file names
-if args.scenario_type == "two_platoon":
-    log_dir = f"{output_folder}/two_platoon/raw_follower_{platoon2_controller}"
-    save_dir = f"{output_folder}/two_platoon/plots_follower_{platoon2_controller}"
-    file_name_base = f"{platoon1_controller}_{platoon2_controller}_speed{speed}_headway{headway}_{disturbance}_topology{topology}_mergingDist{inter_gap}_size{simulation_size}"
-
-else:
-    
-    log_dir = f"{output_folder}/one_platoon/raw_{platoon1_controller}"
-    save_dir = f"{output_folder}/one_platoon/plots_{platoon1_controller}"
-    file_name_base = f"{platoon1_controller}_speed{speed}_headway{headway}_{disturbance}_topology{topology}"
+log_dir = f"{output_folder}/raw_follower_{platoon2_controller}"
+save_dir = f"{output_folder}/plots_follower_{platoon2_controller}"
+file_name_base = f"{platoon1_controller}_{platoon2_controller}_speed{speed}_headway{headway}_{disturbance}_topology{topology}_mergingDist{inter_gap}_size{simulation_size}"
 os.makedirs(log_dir, exist_ok=True)
     
 file_path = os.path.join(log_dir, f"{file_name_base}_{timestamp_file}.csv")

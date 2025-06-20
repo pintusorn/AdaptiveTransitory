@@ -7,7 +7,7 @@ plt.rcParams["font.family"] = "Times New Roman"
 
 # Load CSV file
 # rms_output_baseline
-file_path = "../output/two_platoon/plots/6-summary_speed20_headway0.9.csv"
+file_path = "../output/plots/6-summary_speed20_headway0.9.csv"
 df = pd.read_csv(file_path)
 
 df = df[~df['scenario'].isin(['slow_down', 'speed_up'])]

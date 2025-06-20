@@ -2,7 +2,7 @@ import os
 import time
 import csv
 
-def initialize_logging(controller1, controller2, speed, headway, disturbance, scenario_type, timestamp_file, topology, method,inter_gap,simulation_size):
+def initialize_logging(controller1, controller2, speed, headway, disturbance, timestamp_file, topology, method,inter_gap,simulation_size):
     """
     Initializes logging for the simulation and creates a CSV file to store vehicle data.
     """
@@ -11,12 +11,8 @@ def initialize_logging(controller1, controller2, speed, headway, disturbance, sc
     if(method == "baseline"): output_folder="output"
     elif(method == "transitory"): output_folder="output_transitory"
 
-    if scenario_type == "two_platoon":
-        log_dir = f"{output_folder}/two_platoon/raw_follower_{controller2}"
-        file_name = f"{controller1}_{controller2}_speed{speed}_headway{headway}_{disturbance}_topology{topology}_mergingDist{inter_gap}_size{simulation_size}_{timestamp_file}.csv"
-    else:
-        log_dir = f"{output_folder}/one_platoon/raw_{controller1}"
-        file_name = f"{controller1}_speed{speed}_headway{headway}_{disturbance}_topology{topology}_{timestamp_file}.csv"
+    log_dir = f"{output_folder}/raw_follower_{controller2}"
+    file_name = f"{controller1}_{controller2}_speed{speed}_headway{headway}_{disturbance}_topology{topology}_mergingDist{inter_gap}_size{simulation_size}_{timestamp_file}.csv"
 
     os.makedirs(log_dir, exist_ok=True)
     file_path = os.path.join(log_dir, file_name)

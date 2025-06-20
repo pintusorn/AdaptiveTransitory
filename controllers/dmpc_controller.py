@@ -4,6 +4,12 @@ import traci
 def dmpc_controller(veh_num, ego_speed, ego_pos, pred_speed, pred_pos, pred_accel, 
                    leader_speed, leader_pos, leader_accel, d_safe, leader_prev_accel, pred_prev_accel):
 
+    # q_d_leader = 10.15    
+    # q_d_front  = 7   
+    # q_v_front  = 9    
+    # q_a_front  = 1.8   
+    # q_v_leader = 9 
+
     q_d_leader = 10.15    
     q_d_front  = 7   
     q_v_front  = 9    

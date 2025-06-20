@@ -1,7 +1,7 @@
 
 
 
-for parent in output/one_platoon output/two_platoon; do
+for parent in output; do
   for subdir in "$parent"/*/; do
     # Only act if it is a directory
     if [ -d "$subdir" ]; then
@@ -11,7 +11,7 @@ for parent in output/one_platoon output/two_platoon; do
   done
 done
 
-for parent in output_transitory/one_platoon output_transitory/two_platoon; do
+for parent in output_transitory; do
   for subdir in "$parent"/*/; do
     # Only act if it is a directory
     if [ -d "$subdir" ]; then

@@ -5,7 +5,7 @@ import os
 import re
 import matplotlib
 
-directory = "../output_transitory/two_platoon/raw_follower_consensus/"
+directory = "../output_transitory/raw_follower_consensus/"
 all_files = glob.glob(os.path.join(directory, "*.csv"))
 
 pattern = re.compile(
@@ -72,8 +72,8 @@ import re
 scenarios = ["brake"]
 leader_controller = "dmpc"
 follower_controller = "consensus"
-base_dir = f"../output_transitory/two_platoon/raw_follower_{follower_controller}"
-plot_dir = "../output_transitory/two_platoon/plots"
+base_dir = f"../output_transitory/raw_follower_{follower_controller}"
+plot_dir = "../output_transitory/plots"
 os.makedirs(plot_dir, exist_ok=True)
 summary_rows = []
 

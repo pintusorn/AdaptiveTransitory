@@ -258,7 +258,7 @@ while step < max_step:
                             # print("target_accel: ", target_accel)
                             traci.vehicle.setAcceleration(veh_id_2, target_accel, 0.01)
                             emer_count += 1
-                            print(emer_count)
+                            # print(emer_count)
                             if emer_count == 30:  # e.g., 30 steps at 0.01s = 0.3s, or use 300 for 3s
                                 print("Heyy step at", step)
                                 flag_emer = "off"

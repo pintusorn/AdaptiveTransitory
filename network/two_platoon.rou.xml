@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated on 2025-06-19 15:51:19 -->
+<!-- Generated on 2025-06-20 09:49:00 -->
 <routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
 
     <!-- Vehicle Types -->
@@ -9,36 +9,20 @@
     <!-- Routes -->
     <route id="main" edges="highway"/>
 
-    <vehicle id="p1veh1" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="860"/>
-    <vehicle id="p1veh2" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="838"/>
-    <vehicle id="p1veh3" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="816"/>
-    <vehicle id="p1veh4" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="794"/>
-    <vehicle id="p1veh5" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="772"/>
-    <vehicle id="p1veh6" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="750"/>
-    <vehicle id="p1veh7" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="728"/>
-    <vehicle id="p1veh8" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="706"/>
-    <vehicle id="p1veh9" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="684"/>
-    <vehicle id="p1veh10" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="662"/>
-    <vehicle id="p1veh11" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="640"/>
-    <vehicle id="p1veh12" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="618"/>
-    <vehicle id="p1veh13" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="596"/>
-    <vehicle id="p1veh14" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="574"/>
-    <vehicle id="p1veh15" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="552"/>
-    <vehicle id="p1veh16" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="530"/>
-    <vehicle id="p2veh1" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="330"/>
-    <vehicle id="p2veh2" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="308"/>
-    <vehicle id="p2veh3" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="286"/>
-    <vehicle id="p2veh4" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="264"/>
-    <vehicle id="p2veh5" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="242"/>
-    <vehicle id="p2veh6" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="220"/>
-    <vehicle id="p2veh7" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="198"/>
-    <vehicle id="p2veh8" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="176"/>
-    <vehicle id="p2veh9" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="154"/>
-    <vehicle id="p2veh10" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="132"/>
-    <vehicle id="p2veh11" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="110"/>
-    <vehicle id="p2veh12" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="88"/>
-    <vehicle id="p2veh13" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="66"/>
-    <vehicle id="p2veh14" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="44"/>
-    <vehicle id="p2veh15" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="22"/>
-    <vehicle id="p2veh16" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="0"/>
+    <vehicle id="p1veh1" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="508"/>
+    <vehicle id="p1veh2" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="486"/>
+    <vehicle id="p1veh3" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="464"/>
+    <vehicle id="p1veh4" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="442"/>
+    <vehicle id="p1veh5" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="420"/>
+    <vehicle id="p1veh6" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="398"/>
+    <vehicle id="p1veh7" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="376"/>
+    <vehicle id="p1veh8" type="CAV" depart="0.00" route="main" departSpeed="20" departPos="354"/>
+    <vehicle id="p2veh1" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="154"/>
+    <vehicle id="p2veh2" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="132"/>
+    <vehicle id="p2veh3" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="110"/>
+    <vehicle id="p2veh4" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="88"/>
+    <vehicle id="p2veh5" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="66"/>
+    <vehicle id="p2veh6" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="44"/>
+    <vehicle id="p2veh7" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="22"/>
+    <vehicle id="p2veh8" type="CAV2" depart="0.00" route="main" departSpeed="20" departPos="0"/>
 </routes>

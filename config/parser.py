@@ -55,13 +55,8 @@ def parse_arguments():
     parser.add_argument("--method", type=str, choices=["baseline", "transitory"], default=None,
                         help="transitory used or not")
 
-    # Parse arguments
     args = parser.parse_args()
-
-    # After parsing the arguments, validate the combination
     if args.plot and not args.save_log:
         parser.error("The --plot option requires --save_log to be specified.")
-
-
 
     return args

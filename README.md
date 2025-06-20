@@ -22,13 +22,6 @@ Controller setup includes the following additional features:
 ## Heterogeneous controller merging baseline result
 ![Raw Data Visualization](utils/raw_data.jpg)
 
-## Analysis
-- The adaptive controller achieves **58.38% average improvement** in jerk RMS across all joining scenarios.
-- Largest improvements:
-  - PID (braking): 76%
-  - DMPC (normal + oscillation): ~79%
-- These improvements are obtained without affecting the gap-spacing, maintaining safety.
-
 ## Adaptive Transitory controller
 Baseline results reveal that CACC generally performs best in no-disturbance and oscillatory scenarios (with respect to RMS jerk), while DMPC excels in braking scenarios. Based on this, we implement the adaptive transitory controller at the leader of the joining platoon. This mechanism is activated during merging and switches between the two controllers: if the last vehicle in the preceding platoon is at least 5 m/s slower than the joining leader, a sudden brake is detected and DMPC is used; otherwise, CACC is used.
 
@@ -55,6 +48,12 @@ Baseline results reveal that CACC generally performs best in no-disturbance and 
 *Note: Relative improvement is calculated as  
 
 Improvement = (Baseline – Adaptive) / Baseline × 100%
+
+- The adaptive controller achieves **58.38% average improvement** in jerk RMS across all joining scenarios.
+- Largest improvements:
+  - PID (braking): 76%
+  - DMPC (normal + oscillation): ~79%
+- These improvements are obtained without affecting the gap-spacing, maintaining safety.
 
 While the switching logic is somewhat heuristic, this work demonstrates that even a simple implementation can help smooth heterogeneous controller merging. We also tested the merging scenario with different parameters (speed, headway, merging distance, platoon size) and found that some gaps remain. The adaptive transitory controller may not cover all cases, and more advanced methods may be needed. Additional scenarios and real-world implementation considerations should also be explored in future work.
 

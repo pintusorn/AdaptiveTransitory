@@ -19,6 +19,17 @@ Controller setup includes the following additional features:
 1. Emergency braking: The leader of the joining platoon checks two conditions: (a) if the speed difference between the joining platoon leader and the preceding platoon leader exceeds x m/s, and (b) if the gap between the joining and preceding platoons is less than 14 meters.
 2. Control input limit: The control input calculated by the controller is limited to a maximum of 25.
 
+The controller gains used in this work are based on established literature for each of the five controllers:
+
+1. **PID**: Parameters adopted from [Dasgupta et al., 2017](https://ieeexplore.ieee.org/document/8280871).
+2. **CACC**: Standard parameterization following [Arem et al., 2006](https://ieeexplore.ieee.org/document/4019451).
+3. **Consensus**: Based on controller design in [Santini et al., 2018](https://ieeexplore.ieee.org/document/8574948).
+4. **H-infinity**: Weighting coefficients are set according to [Zheng, 2017](https://arxiv.org/abs/1611.01412), with minor adjustments for our scenario. Note: We do not solve the LMI (Linear Matrix Inequality) for optimal gains, but instead use the published fixed weights as recommended in the paper.
+5. **DMPC**: Implementation and gain selection inspired by [An et al., 2023](https://ieeexplore.ieee.org/document/10074981).
+
+> **Note:**  
+> The controller implementations are not exact replications of the referenced papers, but use their recommended settings as guidelines for practical tuning.
+
 ## Heterogeneous controller merging baseline result
 ![Raw Data Visualization](utils/raw_data.jpg)
 

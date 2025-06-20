@@ -123,6 +123,6 @@ Install SUMO: https://sumo.dlr.de/docs/Installing/index.html
 
 ## How to Run
 You can run a simulation with custom settings using command-line arguments. Here is an example command:
-
+```bash
 python main.py --speed=20 --headway=0.9 --platoon1=pid --platoon2=cacc --disturbance=none --save_log --size=16 --inter_gap=200 --topology=1 --method=baseline --merging_time=20.0 --disturbance_time=10.0 --total_time=60.0 --gui
-
+```

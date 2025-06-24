@@ -52,6 +52,8 @@ $K_p=1.88$, $K_v=12$, $K_a=1$, $K_d=3$
 
 3. **Consensus**: Based on controller design in [Santini et al., 2018](https://ieeexplore.ieee.org/document/8574948).
 The Consensus controller is designed for distributed agreement among vehicles, using both leader and predecessor information to harmonize speed and gaps across the platoon. It is reactive but leverages more global platoon information, seeking consensus on velocity and distance to avoid large fluctuations or fragmentation.
+
+
 $$
 a_\text{des}^{\mathrm{CNS}} =
 - B (v_\text{ego} - v_\text{leader})
@@ -90,6 +92,8 @@ $K_2 = [2.377,, 4\times3.425,, 2.501]$
 5. **DMPC**: Implementation and gain selection inspired by [An et al., 2023](https://ieeexplore.ieee.org/document/10074981).
 
 The Distributed Model Predictive Control (DMPC) is a predictive controller that optimizes a cost function over a finite time horizon. At each control step, it computes the sequence of future accelerations for the ego vehicle to minimize the total cost, which penalizes deviations in spacing, speed, and acceleration relative to both the leader and predecessor. The controller selects the first action (acceleration) of the optimal sequence as $a_\text{des}$, then repeats this process at the next timestep. The approach enables anticipation of future events (e.g., leader braking), achieving smoother and safer platoon maneuvers.
+
+
 $$
 \begin{aligned}
 \textbf{cost} \; {+}{=} \; & 
@@ -100,6 +104,8 @@ q_{d,\text{leader}} (d_\text{leader} - d_\text{ego} - d_{\text{safe,leader}})^2 
 & + q_{v,\text{leader}} (v_\text{leader} - v_\text{ego})^2 \,.
 \end{aligned}
 $$
+
+
 Gains:
 $q_{d,\text{leader}}=10.15$, $q_{d,\text{front}}=7$, $q_{v,\text{front}}=9$, $q_{a,\text{front}}=1.8$, $q_{v,\text{leader}}=9$, horizon$=4$
 

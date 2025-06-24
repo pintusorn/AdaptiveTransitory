@@ -35,14 +35,12 @@ a_\text{des}^{\mathrm{PID}} =
 }.
 $$
 
-Gains:
-$K_{p,\text{front}}=285$, $K_{p,\text{leader}}=120$, $K_{i,\text{leader}}=9$, $K_{i,\text{front}}=67$, $K_d=2.4$
+- **$K_{p,\text{front}}=285$**: Adjusts response to speed difference with the preceding vehicle.
+- **$K_{p,\text{leader}}=120$**: Adjusts response to speed difference with the leader.
+- **$K_{i,\text{front}}=67$**: Corrects long-term gap error with the preceding vehicle.
+- **$K_{i,\text{leader}}=9$**: Corrects long-term gap error with the leader.
+- **$K_d=2.4$**: Dampens sudden acceleration changes from both the leader and predecessor.
 
-$K_{p,\text{front}}$: Adjusts response to speed difference with the preceding vehicle.
-$K_{p,\text{leader}}$: Adjusts response to speed difference with the leader.
-$K_{i,\text{front}}$: Corrects long-term gap error with the preceding vehicle.
-$K_{i,\text{leader}}$: Corrects long-term gap error with the leader.
-$K_d$: Dampens sudden acceleration changes from both the leader and predecessor.
 
 2. **CACC**: Standard parameterization following [Arem et al., 2006](https://ieeexplore.ieee.org/document/4019451).
 

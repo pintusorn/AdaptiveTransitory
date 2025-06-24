@@ -2,7 +2,7 @@
 
 This work investigates the compatibility of heterogeneous platoon controllers during merging maneuvers. We consider five controllers: PID, CACC, Consensus, H-infinity, and DMPC. By pairing these controllers, we evaluate all 25 possible combinations during merging scenarios, including disturbances such as braking and speed oscillations in the preceding platoon. Based on these observations, we introduce an adaptive transitory controller, which is a simple mechanism designed to facilitate smoother merging between heterogeneous platoon controllers. All simulations are performed using SUMO and TraCI with Python.
 
-![System](utils/system.jpg)
+![System](utils/img/system.jpg)
 
 ## Setup
 Here are the scenarios we use to test compatibility:
@@ -106,24 +106,32 @@ $q_{d,\text{leader}}=10.15$, $q_{d,\text{front}}=7$, $q_{v,\text{front}}=9$, $q_
 > The controller implementations are not exact replications of the referenced papers, but use their recommended settings as guidelines for practical tuning.
 
 ## Heterogeneous controller merging baseline result
-![Raw Data Visualization](utils/raw_data.jpg)
+![Raw Data Visualization](utils/img/raw_data.jpg)
 
 The parameter tuning of all five controllers in this study is based on a joining time reference of 60 seconds from the simulation start. Two controllers are configured to merge in each scenario.
 
 **Steady Merge (No Disturbance):**
 In the steady merging scenario, where there is no disturbance, the type of preceding platoon does not significantly impact the joining platoon’s performance. All controllers can maintain their desired gaps and speeds effectively, as the system remains predictable. However, DMPC as a joiner tends to result in a slightly smaller average minimum gap and higher jerk. This is because DMPC, being predictive, sometimes fills the gap more aggressively to optimize merging, sacrificing some comfort for speed. In contrast, CACC, H-infinity, Consensus, and PID controllers offer smoother, more comfortable merging due to their reactive nature, prioritizing gentle responses.
 
-![PID with H-infinity in normal merging Acceleration](output/plots_follower_hinf/pid_hinf_speed20_headway0.9_none_topology1_mergingDist200_size16_Acceleration.pdf)
-![PID with H-infinity in normal merging Speed](output/plots_follower_hinf/pid_hinf_speed20_headway0.9_none_topology1_mergingDist200_size16_Acceleration.pdf)
-![PID with H-infinity in normal merging Gap to leader](output/plots_follower_hinf/pid_hinf_speed20_headway0.9_none_topology1_mergingDist200_size16_Acceleration.pdf)
+![PID with H-infinity in normal merging Acceleration](utils/img/pid_hinf_none_Acceleration.png)
+![PID with H-infinity in normal merging Speed](utils/img/pid_hinf_none_Speed.png)
+![PID with H-infinity in normal merging Gap to leader](utils/img/pid_hinf_none_Gap.png)
 
 
 
 **Braking During Merging:**
 When a braking disturbance occurs during merging, the type of preceding controller starts to influence the outcome. If the leader uses Consensus or DMPC, the joiner typically maintains a closer gap, as these controllers adapt rapidly to changes, leading to tighter formations. When the preceding platoon uses CACC, merging takes longer but is more comfortable, since CACC’s conservative design ensures smooth, safe adjustments. In this scenario, DMPC as a joiner stands out for comfort, leveraging its predictive planning to anticipate and smoothly respond to braking, minimizing abrupt maneuvers and jerk.
 
+![CACC with DMPC in brake merging Acceleration](utils/img/cacc_dmpc_brake_Gap.png)
+![CACC with DMPC in brake merging Speed](utils/img/cacc_dmpc_brake_Speed.png)
+![CACC with DMPC in brake merging Gap to leader](utils/img/cacc_dmpc_brake_Gap.png)
+
 **Oscillating During Merging:**
 In oscillating scenarios, PID as a joiner maintains the largest safety distance from the preceding platoon, as its feedback control remains conservative in the face of continuous disturbances. For the preceding platoon, H-infinity and DMPC controllers encourage slightly larger gaps for the joiner, reflecting their focus on robustness and forward-looking safety. CACC as a joiner, meanwhile, delivers the best comfort during oscillations, but at the cost of a slower merging process due to its emphasis on smoothness over speed.
+
+![Consensus with PID in normal merging Acceleration](utils/img/consensus_pid_sinu_Acceleration.png)
+![Consensus with PID in normal merging Speed](utils/img/consensus_pid_sinu_Speed.png)
+![Consensus with PID in normal merging Gap to leader](utils/img/consensus_pid_sinu_Gap.png)
 
 Overall, CACC is ideal for comfort during steady and oscillating merges, while DMPC is particularly effective for quickly and smoothly handling braking disturbances. This highlights the trade-off between predictive controllers like DMPC, which proactively optimize responses, and reactive controllers like PID and CACC, which favor smoothness and safety in less dynamic environments.
 

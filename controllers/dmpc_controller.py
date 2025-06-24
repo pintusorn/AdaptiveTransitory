@@ -2,7 +2,26 @@ import numpy as np
 
 def dmpc_controller(veh_num, ego_speed, ego_pos, pred_speed, pred_pos, pred_accel, 
                    leader_speed, leader_pos, leader_accel, d_safe, leader_prev_accel, pred_prev_accel):
+    """
+    Distributed Model Predictive Controller for vehicle following.
 
+    Args:
+        veh_num (int): Vehicle index in the platoon.
+        ego_speed (float): Ego vehicle speed.
+        ego_pos (float): Ego vehicle position.
+        pred_speed (float): Preceding vehicle speed.
+        pred_pos (float): Preceding vehicle position.
+        pred_accel (float): Preceding vehicle acceleration.
+        leader_speed (float): Leader vehicle speed.
+        leader_pos (float): Leader vehicle position.
+        leader_accel (float): Leader vehicle acceleration.
+        d_safe (float): Desired safe distance.
+        leader_prev_accel (float): Previous acceleration of the leader.
+        pred_prev_accel (float): Previous acceleration of the predecessor.
+
+    Returns:
+        float: Desired acceleration for the ego vehicle.
+    """
     q_d_leader = 10.15    
     q_d_front  = 7   
     q_v_front  = 9    

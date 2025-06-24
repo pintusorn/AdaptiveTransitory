@@ -54,11 +54,15 @@ $K_p=1.88$, $K_v=12$, $K_a=1$, $K_d=3$
 The Consensus controller is designed for distributed agreement among vehicles, using both leader and predecessor information to harmonize speed and gaps across the platoon. It is reactive but leverages more global platoon information, seeking consensus on velocity and distance to avoid large fluctuations or fragmentation.
 
 $$
-a_\text{des}^{\mathrm{CNS}} =
-- B (v_\text{ego} - v_\text{leader})
-+ \frac{ -K_\text{leader} d_\text{safe,leader} - K_\text{pred} d_\text{safe} }{ d_i }
-+ \frac{ K_\text{leader} d_\text{gap,leader} + K_\text{pred} d_\text{gap} }{ d_i }.
+\begin{aligned}
+a_\text{des}^{\mathrm{CNS}} =\; &
+- B (v_\text{ego} - v_\text{leader}) \\
+& + \frac{ -K_\text{leader} d_\text{safe,leader} - K_\text{pred} d_\text{safe} }{ d_i } \\
+& + \frac{ K_\text{leader} d_\text{gap,leader} + K_\text{pred} d_\text{gap} }{ d_i }
+.
+\end{aligned}
 $$
+
 
 
 Gains:

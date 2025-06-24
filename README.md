@@ -42,7 +42,6 @@ $K_{p,\text{front}}=285$, $K_{p,\text{leader}}=120$, $K_{i,\text{leader}}=9$, $K
 
 The Cooperative Adaptive Cruise Control (CACC) controller uses feedback from both the immediate predecessor and the platoon leader to adjust acceleration, aiming to maintain safe distance and string stability. This is a reactive controller enhanced with feedforward terms for leader acceleration, improving responsiveness to changes up the platoon.
 
-
 $$
 a_\text{des}^{\mathrm{CACC}} = K_p (d_\text{gap} - d_\text{safe}) + K_v (v_\text{pred} - v_\text{ego}) + K_a\, a_\text{leader} + K_d (a_\text{pred} - a_\text{ego}).
 $$
@@ -86,7 +85,6 @@ $K_2 = [2.377,, 4\times3.425,, 2.501]$
 
 The Distributed Model Predictive Control (DMPC) is a predictive controller that optimizes a cost function over a finite time horizon. At each control step, it computes the sequence of future accelerations for the ego vehicle to minimize the total cost, which penalizes deviations in spacing, speed, and acceleration relative to both the leader and predecessor. The controller selects the first action (acceleration) of the optimal sequence as $a_\text{des}$, then repeats this process at the next timestep. The approach enables anticipation of future events (e.g., leader braking), achieving smoother and safer platoon maneuvers.
 
-
 $$
 \begin{aligned}
 \textbf{cost} \; {+}{=} \; & 
@@ -97,7 +95,6 @@ q_{d,\text{leader}} (d_\text{leader} - d_\text{ego} - d_{\text{safe,leader}})^2 
 & + q_{v,\text{leader}} (v_\text{leader} - v_\text{ego})^2 \.
 \end{aligned}
 $$
-
 
 Gains:
 $q_{d,\text{leader}}=10.15$, $q_{d,\text{front}}=7$, $q_{v,\text{front}}=9$, $q_{a,\text{front}}=1.8$, $q_{v,\text{leader}}=9$, $horizon=4$
@@ -113,15 +110,17 @@ The parameter tuning of all five controllers in this study is based on a joining
 **Steady Merge (No Disturbance):**
 In the steady merging scenario, where there is no disturbance, the type of preceding platoon does not significantly impact the joining platoon’s performance. All controllers can maintain their desired gaps and speeds effectively, as the system remains predictable. However, DMPC as a joiner tends to result in a slightly smaller average minimum gap and higher jerk. This is because DMPC, being predictive, sometimes fills the gap more aggressively to optimize merging, sacrificing some comfort for speed. In contrast, CACC, H-infinity, Consensus, and PID controllers offer smoother, more comfortable merging due to their reactive nature, prioritizing gentle responses.
 
+Example plots:
+PID and H-infinity in normal merging
 ![PID with H-infinity in normal merging Acceleration](utils/img/pid_hinf_none_Acceleration.png)
 ![PID with H-infinity in normal merging Speed](utils/img/pid_hinf_none_Speed.png)
 ![PID with H-infinity in normal merging Gap to leader](utils/img/pid_hinf_none_Gap.png)
 
-
-
 **Braking During Merging:**
 When a braking disturbance occurs during merging, the type of preceding controller starts to influence the outcome. If the leader uses Consensus or DMPC, the joiner typically maintains a closer gap, as these controllers adapt rapidly to changes, leading to tighter formations. When the preceding platoon uses CACC, merging takes longer but is more comfortable, since CACC’s conservative design ensures smooth, safe adjustments. In this scenario, DMPC as a joiner stands out for comfort, leveraging its predictive planning to anticipate and smoothly respond to braking, minimizing abrupt maneuvers and jerk.
 
+Example plot
+CACC and DMPC in merging with preceding platoon brake disturbance
 ![CACC with DMPC in brake merging Acceleration](utils/img/cacc_dmpc_brake_Gap.png)
 ![CACC with DMPC in brake merging Speed](utils/img/cacc_dmpc_brake_Speed.png)
 ![CACC with DMPC in brake merging Gap to leader](utils/img/cacc_dmpc_brake_Gap.png)
@@ -129,9 +128,12 @@ When a braking disturbance occurs during merging, the type of preceding controll
 **Oscillating During Merging:**
 In oscillating scenarios, PID as a joiner maintains the largest safety distance from the preceding platoon, as its feedback control remains conservative in the face of continuous disturbances. For the preceding platoon, H-infinity and DMPC controllers encourage slightly larger gaps for the joiner, reflecting their focus on robustness and forward-looking safety. CACC as a joiner, meanwhile, delivers the best comfort during oscillations, but at the cost of a slower merging process due to its emphasis on smoothness over speed.
 
-![Consensus with PID in normal merging Acceleration](utils/img/consensus_pid_sinu_Acceleration.png)
-![Consensus with PID in normal merging Speed](utils/img/consensus_pid_sinu_Speed.png)
-![Consensus with PID in normal merging Gap to leader](utils/img/consensus_pid_sinu_Gap.png)
+Example plot
+Consensus and PID in merging with preceding platoon's speed osciallting
+
+![Consensus with PID in sinu merging Acceleration](utils/img/consensus_pid_sinu_Acceleration.png)
+![Consensus with PID in sinu merging Speed](utils/img/consensus_pid_sinu_Speed.png)
+![Consensus with PID in sinu merging Gap to leader](utils/img/consensus_pid_sinu_Gap.png)
 
 Overall, CACC is ideal for comfort during steady and oscillating merges, while DMPC is particularly effective for quickly and smoothly handling braking disturbances. This highlights the trade-off between predictive controllers like DMPC, which proactively optimize responses, and reactive controllers like PID and CACC, which favor smoothness and safety in less dynamic environments.
 

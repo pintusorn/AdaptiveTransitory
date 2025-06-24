@@ -63,6 +63,7 @@ $$
 
 
 
+
 Gains:
 $B=30$, $K_{\text{pred}}=5.41$, $K_{\text{leader}}=5.41$
 

@@ -105,7 +105,7 @@ $$
 
 
 Gains:
-$q_{d,\text{leader}}=10.15$, $q_{d,\text{front}}=7$, $q_{v,\text{front}}=9$, $q_{a,\text{front}}=1.8$, $q_{v,\text{leader}}=9$, horizon$=4$
+$q_{d,\text{leader}}=10.15$, $q_{d,\text{front}}=7$, $q_{v,\text{front}}=9$, $q_{a,\text{front}}=1.8$, $q_{v,\text{leader}}=9$, $horizon=4$
 
 > **Note:**  
 > The controller implementations are not exact replications of the referenced papers, but use their recommended settings as guidelines for practical tuning.

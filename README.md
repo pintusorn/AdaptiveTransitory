@@ -80,7 +80,7 @@ K_2
 d_\text{gap} - d_\text{safe} \\
 v_\text{pred} - v_\text{ego} \\
 a_\text{pred} - a_\text{ego}
-\end{bmatrix}
+\end{bmatrix}.
 $$
 
 Gains:
@@ -99,7 +99,7 @@ q_{d,\text{leader}} (d_\text{leader} - d_\text{ego} - d_{\text{safe,leader}})^2 
 & + q_{d,\text{front}} (d_\text{pred} - d_\text{ego} - d_\text{safe})^2 \\
 & + q_{v,\text{front}} (v_\text{pred} - v_\text{ego})^2 \\
 & + q_{a,\text{front}} \left( \frac{a_\text{leader} - a_\text{ego} + a_\text{pred} - a_\text{ego}}{2} \right)^2 \\
-& + q_{v,\text{leader}} (v_\text{leader} - v_\text{ego})^2 \,.
+& + q_{v,\text{leader}} (v_\text{leader} - v_\text{ego})^2 \.
 \end{aligned}
 $$
 

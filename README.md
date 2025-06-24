@@ -22,10 +22,86 @@ Controller setup includes the following additional features:
 The controller gains used in this work are based on established literature for each of the five controllers:
 
 1. **PID**: Parameters adopted from [Dasgupta et al., 2017](https://ieeexplore.ieee.org/document/8280871).
+The PID controller is a classical feedback controller that combines proportional, integral, and derivative terms of both the leader and the predecessor to minimize spacing, speed, and acceleration errors. It is a reactive controller—output is based solely on the current and past states, not on prediction of future behavior. Gains are tuned to ensure stability and fast response without overshoot.
+
+$$
+a_\text{des}^{\mathrm{PID}} = 
+\frac{
+    K_d(a_\text{leader} + a_\text{pred}) + K_{p,\text{leader}} (v_\text{leader} - v_\text{ego}) \\
+    + K_{p,\text{front}} (v_\text{pred} - v_\text{ego}) + K_{i,\text{front}} (d_\text{gap} - d_\text{safe}) \\
+    + K_{i,\text{leader}} (d_\text{gap,leader} - d_\text{safe,leader})
+}{
+    0.01\, v_\text{ego} + 2K_d
+}.
+$$
+
+Gains:
+$K_{p,\text{front}}=285$, $K_{p,\text{leader}}=120$, $K_{i,\text{leader}}=9$, $K_{i,\text{front}}=67$, $K_d=2.4$
+
 2. **CACC**: Standard parameterization following [Arem et al., 2006](https://ieeexplore.ieee.org/document/4019451).
+
+The Cooperative Adaptive Cruise Control (CACC) controller uses feedback from both the immediate predecessor and the platoon leader to adjust acceleration, aiming to maintain safe distance and string stability. This is a reactive controller enhanced with feedforward terms for leader acceleration, improving responsiveness to changes up the platoon.
+
+
+$$
+a_\text{des}^{\mathrm{CACC}} = K_p (d_\text{gap} - d_\text{safe}) + K_v (v_\text{pred} - v_\text{ego}) + K_a\, a_\text{leader} + K_d (a_\text{pred} - a_\text{ego}).
+$$
+
+Gains:
+$K_p=1.88$, $K_v=12$, $K_a=1$, $K_d=3$
+
 3. **Consensus**: Based on controller design in [Santini et al., 2018](https://ieeexplore.ieee.org/document/8574948).
+The Consensus controller is designed for distributed agreement among vehicles, using both leader and predecessor information to harmonize speed and gaps across the platoon. It is reactive but leverages more global platoon information, seeking consensus on velocity and distance to avoid large fluctuations or fragmentation.
+$$
+a_\text{des}^{\mathrm{CNS}} =
+- B (v_\text{ego} - v_\text{leader})
++ \frac{ -K_\text{leader} d_\text{safe,leader} - K_\text{pred} d_\text{safe} }{ d_i }
++ \frac{ K_\text{leader} d_\text{gap,leader} + K_\text{pred} d_\text{gap} }{ d_i }.
+$$
+
+Gains:
+$B=30$, $K_{\text{pred}}=5.41$, $K_{\text{leader}}=5.41$
+
 4. **H-infinity**: Weighting coefficients are set according to [Zheng, 2017](https://arxiv.org/abs/1611.01412), with minor adjustments for our scenario. Note: We do not solve the LMI (Linear Matrix Inequality) for optimal gains, but instead use the published fixed weights as recommended in the paper.
+The H-infinity ($\mathcal{H}^\infty$) controller optimizes robustness against worst-case disturbances, balancing errors in gap, speed, and acceleration from both leader and predecessor. This is a robust optimal controller, typically tuned via optimization, but here uses published fixed gains. It is still reactive but emphasizes disturbance rejection and robustness.
+
+
+$$
+a_\text{des}^{\mathcal{H}^\infty} =
+K_1
+\begin{bmatrix}
+d_\text{gap,leader} - d_\text{safe,leader} \\
+v_\text{leader} - v_\text{ego} \\
+a_\text{leader} - a_\text{ego}
+\end{bmatrix}
++
+K_2
+\begin{bmatrix}
+d_\text{gap} - d_\text{safe} \\
+v_\text{pred} - v_\text{ego} \\
+a_\text{pred} - a_\text{ego}
+\end{bmatrix}
+$$
+
+Gains:
+$K_1 = [2.377,, 3.425,, 2.501]$,
+$K_2 = [2.377,, 4\times3.425,, 2.501]$
+
 5. **DMPC**: Implementation and gain selection inspired by [An et al., 2023](https://ieeexplore.ieee.org/document/10074981).
+
+The Distributed Model Predictive Control (DMPC) is a predictive controller that optimizes a cost function over a finite time horizon. At each control step, it computes the sequence of future accelerations for the ego vehicle to minimize the total cost, which penalizes deviations in spacing, speed, and acceleration relative to both the leader and predecessor. The controller selects the first action (acceleration) of the optimal sequence as $a_\text{des}$, then repeats this process at the next timestep. The approach enables anticipation of future events (e.g., leader braking), achieving smoother and safer platoon maneuvers.
+$$
+\begin{aligned}
+\textbf{cost} \; {+}{=} \; & 
+q_{d,\text{leader}} (d_\text{leader} - d_\text{ego} - d_{\text{safe,leader}})^2 \\
+& + q_{d,\text{front}} (d_\text{pred} - d_\text{ego} - d_\text{safe})^2 \\
+& + q_{v,\text{front}} (v_\text{pred} - v_\text{ego})^2 \\
+& + q_{a,\text{front}} \left( \frac{a_\text{leader} - a_\text{ego} + a_\text{pred} - a_\text{ego}}{2} \right)^2 \\
+& + q_{v,\text{leader}} (v_\text{leader} - v_\text{ego})^2 \,.
+\end{aligned}
+$$
+Gains:
+$q_{d,\text{leader}}=10.15$, $q_{d,\text{front}}=7$, $q_{v,\text{front}}=9$, $q_{a,\text{front}}=1.8$, $q_{v,\text{leader}}=9$, horizon$=4$
 
 > **Note:**  
 > The controller implementations are not exact replications of the referenced papers, but use their recommended settings as guidelines for practical tuning.

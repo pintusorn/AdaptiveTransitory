@@ -38,6 +38,12 @@ $$
 Gains:
 $K_{p,\text{front}}=285$, $K_{p,\text{leader}}=120$, $K_{i,\text{leader}}=9$, $K_{i,\text{front}}=67$, $K_d=2.4$
 
+$K_{p,\text{front}}$: Adjusts response to speed difference with the preceding vehicle.
+$K_{p,\text{leader}}$: Adjusts response to speed difference with the leader.
+$K_{i,\text{front}}$: Corrects long-term gap error with the preceding vehicle.
+$K_{i,\text{leader}}$: Corrects long-term gap error with the leader.
+$K_d$: Dampens sudden acceleration changes from both the leader and predecessor.
+
 2. **CACC**: Standard parameterization following [Arem et al., 2006](https://ieeexplore.ieee.org/document/4019451).
 
 The Cooperative Adaptive Cruise Control (CACC) controller uses feedback from both the immediate predecessor and the platoon leader to adjust acceleration, aiming to maintain safe distance and string stability. This is a reactive controller enhanced with feedforward terms for leader acceleration, improving responsiveness to changes up the platoon.
@@ -48,6 +54,10 @@ $$
 
 Gains:
 $K_p=1.88$, $K_v=12$, $K_a=1$, $K_d=3$
+$K_p$: Controls sensitivity to gap error.
+$K_v$: Adjusts response to speed difference with the predecessor.
+$K_a$: Incorporates leader’s acceleration for quicker anticipation.
+$K_d$: Dampens sudden acceleration differences with the predecessor.
 
 3. **Consensus**: Based on controller design in [Santini et al., 2018](https://ieeexplore.ieee.org/document/8574948).
 The Consensus controller is designed for distributed agreement among vehicles, using both leader and predecessor information to harmonize speed and gaps across the platoon. It is reactive but leverages more global platoon information, seeking consensus on velocity and distance to avoid large fluctuations or fragmentation.
@@ -56,6 +66,9 @@ $$ a_\text{des}^{\mathrm{CNS}} = - B (v_\text{ego} - v_\text{leader}) + \frac{ -
 
 Gains:
 $B=30$, $K_{\text{pred}}=5.41$, $K_{\text{leader}}=5.41$
+$B$: Aligns ego speed with the leader’s speed.
+$K_{\text{leader}}$: Weights influence of the leader’s gap and safety distance.
+$K_{\text{pred}}$: Weights influence of the predecessor’s gap and safety distance.
 
 4. **H-infinity**: Weighting coefficients are set according to [Zheng, 2017](https://arxiv.org/abs/1611.01412), with minor adjustments for our scenario. Note: We do not solve the LMI (Linear Matrix Inequality) for optimal gains, but instead use the published fixed weights as recommended in the paper.
 The H-infinity ($\mathcal{H}^\infty$) controller optimizes robustness against worst-case disturbances, balancing errors in gap, speed, and acceleration from both leader and predecessor. This is a robust optimal controller, typically tuned via optimization, but here uses published fixed gains. It is still reactive but emphasizes disturbance rejection and robustness.
@@ -81,6 +94,9 @@ Gains:
 $K_1 = [2.377,, 3.425,, 2.501]$,
 $K_2 = [2.377,, 4\times3.425,, 2.501]$
 
+$K_1$: Weights leader-related gap, speed, and acceleration errors.
+$K_2$: Weights predecessor-related gap, speed, and acceleration errors.
+
 5. **DMPC**: Implementation and gain selection inspired by [An et al., 2023](https://ieeexplore.ieee.org/document/10074981).
 
 The Distributed Model Predictive Control (DMPC) is a predictive controller that optimizes a cost function over a finite time horizon. At each control step, it computes the sequence of future accelerations for the ego vehicle to minimize the total cost, which penalizes deviations in spacing, speed, and acceleration relative to both the leader and predecessor. The controller selects the first action (acceleration) of the optimal sequence as $a_\text{des}$, then repeats this process at the next timestep. The approach enables anticipation of future events (e.g., leader braking), achieving smoother and safer platoon maneuvers.
@@ -98,6 +114,13 @@ $$
 
 Gains:
 $q_{d,\text{leader}}=10.15$, $q_{d,\text{front}}=7$, $q_{v,\text{front}}=9$, $q_{a,\text{front}}=1.8$, $q_{v,\text{leader}}=9$, $horizon=4$
+
+$q_{d,\text{leader}}$: Penalizes gap error with the leader.
+$q_{d,\text{front}}$: Penalizes gap error with the predecessor.
+$q_{v,\text{front}}$: Penalizes speed difference with the predecessor.
+$q_{a,\text{front}}$: Penalizes acceleration mismatch with the leader and predecessor.
+$q_{v,\text{leader}}$: Penalizes speed difference with the leader.
+$horizon$: Sets how many steps ahead the controller predicts and optimizes.
 
 > **Note:**  
 > The controller implementations are not exact replications of the referenced papers, but use their recommended settings as guidelines for practical tuning.
